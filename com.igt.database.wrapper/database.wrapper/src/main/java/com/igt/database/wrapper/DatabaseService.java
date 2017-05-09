@@ -1,5 +1,9 @@
 package com.igt.database.wrapper;
 
-public interface DatabaseService {
+import java.util.List;
 
+public interface DatabaseService {
+	void createCustomer(CustomerEntity customer);
+	
+	List<CustomerEntity> getCustomers();
 }
