@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+	<persistence-unit name="ogm-mongodb" transaction-type="JTA">
+		<!-- Use the Hibernate OGM provider: configuration will be transparent -->
+		<provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
+		<properties>
+			<!-- Here you will pick which NoSQL technology to use, and configure it; 
+				in this example we start a local in-memory Infinispan node. -->
+			<!-- <property name="hibernate.ogm.datastore.provider" value="infinispan"/> -->
+			<property name="hibernate.ogm.datastore.provider" value="mongodb" />
+			<property name="hibernate.ogm.datastore.database" value="catalog" />
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="ogm-neo4j" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
+		<properties>
+			<property name="hibernate.ogm.datastore.provider" value="neo4j_embedded" />
+			<property name="hibernate.ogm.neo4j.database_path" value="${graphdb.path}" />
+			<property name="hibernate.search.default.directory_provider"
+				value="ram" />
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="ogm-infinispan" transaction-type="JTA">
+		<!-- Use the Hibernate OGM provider: configuration will be transparent -->
+		<provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
+		<properties>
+			<!-- Here you will pick which NoSQL technology to use, and configure it; 
+				in this example we start a local in-memory Infinispan node. -->
+			<property name="hibernate.ogm.datastore.provider" value="infinispan" />
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="mysql">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<properties>
+			<property name="hibernate.archive.autodetection" value="class" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect" />
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/querydsl" />
+			<property name="hibernate.connection.username" value="querydsl" />
+			<property name="hibernate.connection.password" value="querydsl" />
+			<!-- <property name="hibernate.show_sql" value="true"/> -->
+			<property name="hibernate.flushMode" value="FLUSH_AUTO" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="oracle">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<properties>
+			<property name="hibernate.archive.autodetection" value="class" />
+			<property name="hibernate.dialect" value="com.mysema.query.jpa.support.ExtendedOracleDialect" />
+			<property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver" />
+			<property name="hibernate.connection.url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+			<property name="hibernate.connection.username" value="querydsl" />
+			<property name="hibernate.connection.password" value="querydsl" />
+			<!-- <property name="hibernate.show_sql" value="true"/> -->
+			<property name="hibernate.flushMode" value="FLUSH_AUTO" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+		</properties>
+	</persistence-unit>
+</persistence>
