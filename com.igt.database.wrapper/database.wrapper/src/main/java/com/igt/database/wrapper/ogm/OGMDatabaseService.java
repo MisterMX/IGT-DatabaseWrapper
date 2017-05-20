@@ -37,7 +37,7 @@ public class OGMDatabaseService implements DatabaseService {
         transaction.begin();
         
         List<CustomerEntity> result = entityManager
-        		.createQuery("SELECT c FROM Customer ORDER BY c.name ASC", CustomerEntity.class)
+        		.createQuery("SELECT c FROM CustomerEntity c ORDER BY c.surName ASC, c.foreName ASC", CustomerEntity.class)
         		.getResultList();
         
         transaction.commit();

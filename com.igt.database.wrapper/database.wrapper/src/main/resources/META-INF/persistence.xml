@@ -18,12 +18,12 @@
 		<provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
 		<properties>
 			<property name="hibernate.ogm.datastore.provider" value="neo4j_embedded" />
-			<property name="hibernate.ogm.neo4j.database_path" value="${graphdb.path}" />
-			<property name="hibernate.search.default.directory_provider"
-				value="ram" />
+			<property name="hibernate.ogm.neo4j.database_path" value=".neo4j/" />
+			<property name="hibernate.search.default.directory_provider" value="ram" />
 		</properties>
 	</persistence-unit>
-	<persistence-unit name="ogm-infinispan" transaction-type="JTA">
+	<persistence-unit name="ogm-infinispan"
+		transaction-type="JTA">
 		<!-- Use the Hibernate OGM provider: configuration will be transparent -->
 		<provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
 		<properties>
@@ -50,7 +50,8 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<properties>
 			<property name="hibernate.archive.autodetection" value="class" />
-			<property name="hibernate.dialect" value="com.mysema.query.jpa.support.ExtendedOracleDialect" />
+			<property name="hibernate.dialect"
+				value="com.mysema.query.jpa.support.ExtendedOracleDialect" />
 			<property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver" />
 			<property name="hibernate.connection.url" value="jdbc:oracle:thin:@localhost:1521:xe" />
 			<property name="hibernate.connection.username" value="querydsl" />

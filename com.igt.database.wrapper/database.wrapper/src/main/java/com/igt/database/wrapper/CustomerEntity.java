@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.Field;
@@ -26,7 +26,7 @@ public class CustomerEntity {
 	@Field(analyze = Analyze.NO)
 	private Date birthDate;
 	
-	@ManyToOne
+	@OneToMany(mappedBy = "customer")
 	private Set<BillEntity> bills;
 	
 	

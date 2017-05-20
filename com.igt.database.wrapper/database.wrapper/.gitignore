@@ -1,2 +1,4 @@
 /target/
 .settings/
+#Neo4j DB
+.neo4j/

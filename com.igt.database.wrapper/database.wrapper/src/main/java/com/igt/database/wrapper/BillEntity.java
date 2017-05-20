@@ -2,14 +2,18 @@ package com.igt.database.wrapper;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
 
+@Entity
+@Indexed
 public class BillEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,7 +25,7 @@ public class BillEntity {
 	@Field(analyze = Analyze.NO)
 	private Date purchaseDate;
 	
-	@OneToMany
+	@ManyToOne
 	private CustomerEntity customer;
 
 	
