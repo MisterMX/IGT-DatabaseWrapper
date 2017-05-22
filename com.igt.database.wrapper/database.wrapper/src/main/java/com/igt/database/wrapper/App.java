@@ -18,5 +18,6 @@ public class App {
 		List<CustomerEntity> customers =  databaseService.getCustomers();
 		
 		System.out.println(String.format("%d customer(s)", customers.size()));
+		databaseService.close();
 	}
 }

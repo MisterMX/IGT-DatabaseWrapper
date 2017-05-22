@@ -6,4 +6,6 @@ public interface DatabaseService {
 	void createCustomer(CustomerEntity customer);
 	
 	List<CustomerEntity> getCustomers();
+	
+	void close();
 }

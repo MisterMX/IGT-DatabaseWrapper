@@ -18,6 +18,11 @@ public class OGMDatabaseService implements DatabaseService {
 		factory = Persistence.createEntityManagerFactory(persistenceUnitName);
 	}
 	
+	public void close() {
+		// TODO Auto-generated method stub
+		factory.close();
+	}
+		
 	public void createCustomer(CustomerEntity customer) {
         EntityManager entityManager = factory.createEntityManager();
         
