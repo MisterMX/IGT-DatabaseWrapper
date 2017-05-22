@@ -33,9 +33,7 @@ public class BillEntity {
 		
 	}
 	
-	public BillEntity(Long id, int totalValue, Date purchaseDate, CustomerEntity customer) {
-		super();
-		this.id = id;
+	public BillEntity(int totalValue, Date purchaseDate, CustomerEntity customer) {
 		this.totalValue = totalValue;
 		this.purchaseDate = purchaseDate;
 		this.customer = customer;

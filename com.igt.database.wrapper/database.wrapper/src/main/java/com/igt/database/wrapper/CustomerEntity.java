@@ -34,8 +34,7 @@ public class CustomerEntity {
 		
 	}
 	
-	public CustomerEntity(Long id, String surName, String foreName, Date birthDate, Set<BillEntity> bills) {
-		this.id = id;
+	public CustomerEntity(String surName, String foreName, Date birthDate, Set<BillEntity> bills) {
 		this.surName = surName;
 		this.foreName = foreName;
 		this.birthDate = birthDate;

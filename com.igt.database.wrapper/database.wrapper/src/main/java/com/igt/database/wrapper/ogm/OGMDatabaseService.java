@@ -25,9 +25,10 @@ public class OGMDatabaseService implements DatabaseService {
         transaction.begin();
         
         entityManager.persist(customer);
-        
-        transaction.commit();
+
+        entityManager.flush();
         entityManager.close();
+        transaction.commit();
 	}
 
 	public List<CustomerEntity> getCustomers() {
