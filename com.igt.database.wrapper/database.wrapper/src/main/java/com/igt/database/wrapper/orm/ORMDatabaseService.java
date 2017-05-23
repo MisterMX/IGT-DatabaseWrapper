@@ -21,4 +21,10 @@ public class ORMDatabaseService implements DatabaseService {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public int clearCustomers() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

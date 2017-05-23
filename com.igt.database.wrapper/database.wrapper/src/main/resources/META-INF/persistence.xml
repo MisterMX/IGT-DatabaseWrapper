@@ -3,23 +3,25 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0">
-	<persistence-unit name="ogm-mongodb" transaction-type="JTA">
+	<persistence-unit name="mongodb" transaction-type="RESOURCE_LOCAL">
 		<!-- Use the Hibernate OGM provider: configuration will be transparent -->
 		<provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
 		<properties>
-			<!-- Here you will pick which NoSQL technology to use, and configure it; 
-				in this example we start a local in-memory Infinispan node. -->
-			<!-- <property name="hibernate.ogm.datastore.provider" value="infinispan"/> -->
-			<property name="hibernate.ogm.datastore.provider" value="mongodb" />
-			<property name="hibernate.ogm.datastore.database" value="catalog" />
+			<property name="hibernate.ogm.datastore.provider"
+				value="org.hibernate.ogm.datastore.mongodb.impl.MongoDBDatastoreProvider" />
+			<property name="hibernate.ogm.datastore.database" value="odm_hibernate" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.ogm.datastore.create_database" value="true" />
 		</properties>
 	</persistence-unit>
-	<persistence-unit name="ogm-neo4j" transaction-type="RESOURCE_LOCAL">
+	<persistence-unit name="neo4j" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
 		<properties>
 			<property name="hibernate.ogm.datastore.provider" value="neo4j_embedded" />
 			<property name="hibernate.ogm.neo4j.database_path" value=".neo4j/" />
-			<property name="hibernate.search.default.directory_provider" value="ram" />
+			<property name="hibernate.search.default.directory_provider"
+				value="ram" />
+			<property name="hibernate.show_sql" value="true" />
 		</properties>
 	</persistence-unit>
 	<persistence-unit name="ogm-infinispan"
@@ -30,6 +32,7 @@
 			<!-- Here you will pick which NoSQL technology to use, and configure it; 
 				in this example we start a local in-memory Infinispan node. -->
 			<property name="hibernate.ogm.datastore.provider" value="infinispan" />
+			<property name="hibernate.show_sql" value="true" />
 		</properties>
 	</persistence-unit>
 	<persistence-unit name="mysql">
@@ -44,6 +47,7 @@
 			<!-- <property name="hibernate.show_sql" value="true"/> -->
 			<property name="hibernate.flushMode" value="FLUSH_AUTO" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="true" />
 		</properties>
 	</persistence-unit>
 	<persistence-unit name="oracle">
@@ -59,6 +63,7 @@
 			<!-- <property name="hibernate.show_sql" value="true"/> -->
 			<property name="hibernate.flushMode" value="FLUSH_AUTO" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="true" />
 		</properties>
 	</persistence-unit>
 </persistence>
