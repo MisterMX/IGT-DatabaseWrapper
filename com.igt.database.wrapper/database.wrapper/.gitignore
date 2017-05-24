@@ -2,3 +2,7 @@
 .settings/
 #Neo4j DB
 .neo4j/
+ObjectStore/
+PutObjectStoreDirHere
+com.igt.database.wrapper.BillEntity
+com.igt.database.wrapper.CustomerEntity

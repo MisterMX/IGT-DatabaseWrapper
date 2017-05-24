@@ -7,7 +7,7 @@ public interface DatabaseService {
 	
 	List<CustomerEntity> getCustomers();
 	
-	int clearCustomers();
+	boolean removeCustomer(Long id);
 	
 	void close();
 }

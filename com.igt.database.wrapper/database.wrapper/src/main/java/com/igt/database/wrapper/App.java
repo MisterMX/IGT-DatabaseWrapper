@@ -19,7 +19,9 @@ public class App {
 			CMD_DB_CREATE_CUSTOMER = "customer",
 			CMD_DB_CREATE_CUSTOMER_SURNAME = "--surName=",
 			CMD_DB_CREATE_CUSTOMER_FORENAME = "--foreName=",
-			CMD_DB_CLEAR = "clear",
+			CMD_DB_DELETE = "delete",
+			CMD_DB_DELETE_CUSTOMER = "customer",
+			CMD_DB_DELETE_CUSTOMER_ID = "--id=",
 			MSG_NO_DB_ATTACHED = "No database attached.";
 
 	private static final String[] DB_OGM_NAMES = { "neo4j", "mongodb" }, DB_ORM_NAMES = { "mysql", "oracle" };
@@ -89,8 +91,8 @@ public class App {
 				createCommand(input);
 				break;
 				
-			case CMD_DB_CLEAR:
-				clearDatabase();
+			case CMD_DB_DELETE:
+				deleteCommand(input);
 				break;
 
 			default:
@@ -161,8 +163,6 @@ public class App {
 	}
 	
 	private static void printDbList() {
-		
-		
 		for (String dbName : DB_OGM_NAMES) {
 			System.out.println(String.format("\t%s", dbName));
 		}
@@ -176,6 +176,7 @@ public class App {
 		if (currentDatabase != null) {			
 			List<CustomerEntity> customers = currentDatabase.getCustomers();
 			
+			System.out.println(String.format("%d customer(s) found:", customers.size()));
 			for (CustomerEntity entity : customers) {
 				System.out.println(String.format("\t%d: %s, %s", entity.getId(), entity.getSurName(), entity.getForeName()));
 			}
@@ -223,12 +224,37 @@ public class App {
 		}
 	}
 	
-	private static void clearDatabase() {
+	private static void deleteCommand(String[] input) {
 		if (currentDatabase != null) {
-			int deletedCount = currentDatabase.clearCustomers();
-			System.out.println(String.format("Deleted %d entries.", deletedCount));
+			if (input.length >= 3) {
+				switch (input[2]) {
+				case CMD_DB_DELETE_CUSTOMER:
+					deleteCustomerCommand(input);
+					break;
+				default:
+					printUnknownCommand(input[2]);
+					break;
+				}
+			}
 		} else {
 			printCurrentDb();
+		}
+	}
+	
+	private static void deleteCustomerCommand(String[] input) {
+		if (input.length >= 4) {
+			if (input[3].startsWith(CMD_DB_DELETE_CUSTOMER_ID)) {
+				long id = Long.parseLong(input[3].substring(CMD_DB_DELETE_CUSTOMER_ID.length()));
+				if (currentDatabase.removeCustomer(id)) {
+					System.out.println("Query ok.");
+				} else {
+					System.out.println(String.format("Could not remove customer with ID %d", id));
+				}
+			} else {
+				System.out.println(String.format("Missing %s", CMD_DB_DELETE_CUSTOMER_ID));
+			}
+		} else {
+			System.out.println(String.format("Missing %s", CMD_DB_DELETE_CUSTOMER_ID));
 		}
 	}
 }

@@ -23,8 +23,8 @@ public class ORMDatabaseService implements DatabaseService {
 	}
 
 	@Override
-	public int clearCustomers() {
+	public boolean removeCustomer(Long id) {
 		// TODO Auto-generated method stub
-		return 0;
+		return false;
 	}
 }
