@@ -1,4 +1,4 @@
-package com.igt.database.wrapper.ogm;
+package com.igt.database.wrapper.database;
 
 import java.util.List;
 
@@ -10,11 +10,11 @@ import javax.persistence.Persistence;
 import com.igt.database.wrapper.CustomerEntity;
 import com.igt.database.wrapper.DatabaseService;
 
-public class OGMDatabaseService implements DatabaseService {
+public class PersistenceDatabaseService implements DatabaseService {
 
 	private final EntityManagerFactory factory;
 	
-	public OGMDatabaseService(String persistenceUnitName) {
+	public PersistenceDatabaseService(String persistenceUnitName) {
 		factory = Persistence.createEntityManagerFactory(persistenceUnitName);
 	}
 	

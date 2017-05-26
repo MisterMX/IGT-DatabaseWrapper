@@ -24,45 +24,31 @@
 			<property name="hibernate.show_sql" value="true" />
 		</properties>
 	</persistence-unit>
-	<persistence-unit name="ogm-infinispan"
-		transaction-type="JTA">
+	<persistence-unit name="infinispan"
+		transaction-type="RESOURCE_LOCAL">
 		<!-- Use the Hibernate OGM provider: configuration will be transparent -->
 		<provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
 		<properties>
 			<!-- Here you will pick which NoSQL technology to use, and configure it; 
-				in this example we start a local in-memory Infinispan node. -->
-			<property name="hibernate.ogm.datastore.provider" value="infinispan" />
-			<property name="hibernate.show_sql" value="true" />
+				in this example we start a local in-memory Infinispan node. -->                    
+            <property name="hibernate.cache.infinispan.cachemanager" value="java:CacheManager/entity" />
+            <property name="hibernate.cache.use_query_cache" value="true" />
+            <property name="hibernate.transaction.factory_class" value="org.hibernate.transaction.CMTTransactionFactory"/>
+            <property name="hibernate.transaction.manager_lookup_class"   value="org.hibernate.transaction.JBossTransactionManagerLookup"/> 
 		</properties>
 	</persistence-unit>
 	<persistence-unit name="mysql">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<properties>
 			<property name="hibernate.archive.autodetection" value="class" />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/querydsl" />
-			<property name="hibernate.connection.username" value="querydsl" />
-			<property name="hibernate.connection.password" value="querydsl" />
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/igt?createDatabaseIfNotExist=true" />
+			<property name="hibernate.connection.username" value="root" />
+			<property name="hibernate.connection.password" value="admin" />
 			<!-- <property name="hibernate.show_sql" value="true"/> -->
 			<property name="hibernate.flushMode" value="FLUSH_AUTO" />
-			<property name="hibernate.hbm2ddl.auto" value="update" />
-			<property name="hibernate.show_sql" value="true" />
-		</properties>
-	</persistence-unit>
-	<persistence-unit name="oracle">
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<properties>
-			<property name="hibernate.archive.autodetection" value="class" />
-			<property name="hibernate.dialect"
-				value="com.mysema.query.jpa.support.ExtendedOracleDialect" />
-			<property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver" />
-			<property name="hibernate.connection.url" value="jdbc:oracle:thin:@localhost:1521:xe" />
-			<property name="hibernate.connection.username" value="querydsl" />
-			<property name="hibernate.connection.password" value="querydsl" />
-			<!-- <property name="hibernate.show_sql" value="true"/> -->
-			<property name="hibernate.flushMode" value="FLUSH_AUTO" />
-			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
 			<property name="hibernate.show_sql" value="true" />
 		</properties>
 	</persistence-unit>

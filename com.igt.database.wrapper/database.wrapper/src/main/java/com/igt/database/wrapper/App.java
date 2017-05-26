@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-import com.igt.database.wrapper.ogm.OGMDatabaseService;
+import com.igt.database.wrapper.database.PersistenceDatabaseService;
 
 public class App {
 
@@ -24,7 +24,7 @@ public class App {
 			CMD_DB_DELETE_CUSTOMER_ID = "--id=",
 			MSG_NO_DB_ATTACHED = "No database attached.";
 
-	private static final String[] DB_OGM_NAMES = { "neo4j", "mongodb" }, DB_ORM_NAMES = { "mysql", "oracle" };
+	private static final String[] DB_NAMES = { "neo4j", "mongodb", "infinispan", "mysql" };
 
 	private static DatabaseService currentDatabase;
 	private static Scanner scanner;
@@ -105,31 +105,19 @@ public class App {
 	}
 
 	private static void setDb(String argument) {
-		if (isValidOgmName(argument)) {
+		if (isValidDBName(argument)) {
 			if (currentDatabase != null) {
 				currentDatabase.close();
 			}
 
-			currentDatabase = new OGMDatabaseService(argument);
-		} else if (isValidOrmName(argument)) {
-			// currentDatabase = new ORMDatabaseService(argument);
+			currentDatabase = new PersistenceDatabaseService(argument);
 		} else {
 			System.out.println(String.format("Unknown DB name: %s", argument));
 		}
 	}
 
-	private static boolean isValidOgmName(String name) {
-		for (String dbName : DB_OGM_NAMES) {
-			if (dbName.equals(name)) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	private static boolean isValidOrmName(String name) {
-		for (String dbName : DB_ORM_NAMES) {
+	private static boolean isValidDBName(String name) {
+		for (String dbName : DB_NAMES) {
 			if (dbName.equals(name)) {
 				return true;
 			}
@@ -163,11 +151,7 @@ public class App {
 	}
 	
 	private static void printDbList() {
-		for (String dbName : DB_OGM_NAMES) {
-			System.out.println(String.format("\t%s", dbName));
-		}
-
-		for (String dbName : DB_ORM_NAMES) {
+		for (String dbName : DB_NAMES) {
 			System.out.println(String.format("\t%s", dbName));
 		}
 	}
