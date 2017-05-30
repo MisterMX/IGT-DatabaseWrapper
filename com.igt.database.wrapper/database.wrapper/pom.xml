@@ -62,31 +62,36 @@
 			<artifactId>hibernate-search-infinispan</artifactId>
 			<version>5.1.0.Final</version>
 		</dependency>
+	<!-- <dependency> -->
+	<!-- <groupId>org.neo4j</groupId> -->
+	<!-- <artifactId>neo4j-lucene-index</artifactId> -->
+	<!-- <version>3.2.0</version> -->
+	<!-- </dependency> -->
+	<!-- <dependency> -->
+	<!-- <groupId>org.neo4j</groupId> -->
+	<!-- <artifactId>neo4j</artifactId> -->
+	<!-- <version>3.2.0</version> -->
+	<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.neo4j</groupId> -->
+		<!-- <artifactId>neo4j-kernel</artifactId> -->
+		<!-- <version>3.2.0</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.lucene</groupId> -->
+		<!-- <artifactId>lucene-facet</artifactId> -->
+		<!-- <version>5.5.0</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.lucene</groupId> -->
+		<!-- <artifactId>lucene-queries</artifactId> -->
+		<!-- <version>5.5.0</version> -->
+		<!-- </dependency> -->
 		<dependency>
-			<groupId>org.neo4j</groupId>
-			<artifactId>neo4j-lucene-index</artifactId>
-			<version>3.2.0</version>
+			<groupId>org.hibernate.ogm</groupId>
+			<artifactId>hibernate-ogm-cassandra</artifactId>
+			<version>4.2.0.Final</version>
 		</dependency>
-		<dependency>
-			<groupId>org.neo4j</groupId>
-			<artifactId>neo4j</artifactId>
-			<version>3.2.0</version>
-		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.neo4j</groupId> -->
-<!-- 			<artifactId>neo4j-kernel</artifactId> -->
-<!-- 			<version>3.2.0</version> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.apache.lucene</groupId> -->
-<!-- 			<artifactId>lucene-facet</artifactId> -->
-<!-- 			<version>5.5.0</version> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.apache.lucene</groupId> -->
-<!-- 			<artifactId>lucene-queries</artifactId> -->
-<!-- 			<version>5.5.0</version> -->
-<!-- 		</dependency> -->
 	</dependencies>
 
 	<repositories>

@@ -1,11 +1,13 @@
 package com.igt.database.wrapper;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
 import com.igt.database.wrapper.database.PersistenceDatabaseService;
-
+import org.apache.lucene.store.NativeFSLockFactory;
+import org.apache.lucene.document.Fieldable;
 public class App {
 
 	private static final String 
@@ -24,7 +26,7 @@ public class App {
 			CMD_DB_DELETE_CUSTOMER_ID = "--id=",
 			MSG_NO_DB_ATTACHED = "No database attached.";
 
-	private static final String[] DB_NAMES = { "neo4j", "mongodb", "infinispan", "mysql" };
+	private static final String[] DB_NAMES = { "neo4j", "mongodb", "infinispan", "mysql", "cassandra"};
 
 	private static DatabaseService currentDatabase;
 	private static Scanner scanner;
