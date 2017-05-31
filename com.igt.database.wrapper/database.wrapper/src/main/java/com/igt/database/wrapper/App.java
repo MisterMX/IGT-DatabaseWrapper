@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import com.igt.database.wrapper.database.PersistenceDatabaseService;
 import org.apache.lucene.store.NativeFSLockFactory;
-import org.apache.lucene.document.Fieldable;
+//import org.apache.lucene.document.Fieldable;
 public class App {
 
 	private static final String 

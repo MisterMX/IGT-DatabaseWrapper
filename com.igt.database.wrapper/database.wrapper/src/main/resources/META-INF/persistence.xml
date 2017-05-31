@@ -34,37 +34,16 @@
 			<property name="hibernate.ogm.datastore.provider" value="infinispan" />
 		</properties>
 	</persistence-unit>
-	<persistence-unit name="ehcache" transaction-type="RESOURCE_LOCAL">
-		<provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
-		<properties>
-			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.EhCacheProvider" />
-		</properties>
-	</persistence-unit>
-	<persistence-unit name="redis" transaction-type="RESOURCE_LOCAL">
-		<provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
-		<exclude-unlisted-classes>false</exclude-unlisted-classes>
-		<properties>
-			<property name="hibernate.ogm.datastore.provider" value="REDIS_EXPERIMENTAL" />
-			<property name="hibernate.ogm.datastore.host" value="127.0.0.1:6379" />
-			<!-- <property name="hibernate.ogm.redis.ttl" value="-1" /> -->
-			<property name="hibernate.ogm.redis.ssl" value="false" />
-			<property name="hibernate.ogm.redis.cluster" value="false" />
-			<!-- <property name="hibernate.ogm.datastore.grid_dialect" value="org.hibernate.ogm.datastore.redis.RedisHashDialect" 
-				/> -->
-			<property name="hibernate.ogm.datastore.grid_dialect"
-				value="org.hibernate.ogm.datastore.redis.RedisJsonDialect" />
-
-		</properties>
-	</persistence-unit>
 	<persistence-unit name="cassandra"
 		transaction-type="RESOURCE_LOCAL">
 		<!-- Use Hibernate OGM provider: configuration will be transparent -->
 		<provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
-		<properties>
-			<property name="hibernate.ogm.cassandra.default_keyspace"
-		value="test" />
-			<property name="hibernate.ogm.cassandra.url" value="jdbc:cassandra://localhost:9042" />
-			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+        <properties>
+            <!-- Here you will pick which NoSQL technology to use, and configure it;
+                 in this example we connect to a local Cassandra. -->
+            <property name="hibernate.ogm.datastore.provider" value="org.hibernate.ogm.datastore.cassandra.impl.CassandraDatastoreProvider"/>
+            <property name="hibernate.ogm.datastore.host" value="localhost:9042"/>
+            <property name="hibernate.ogm.datastore.database" value="igt"/>
 		</properties>
 	</persistence-unit>
 	<persistence-unit name="mysql">
